@@ -1,0 +1,239 @@
+/* src/styles.css */
+/* Import Bootstrap and Font Awesome */
+@import 'https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css';
+@import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css';
+
+/* Reset and Full Page Layout */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Full Width Header */
+.header {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.header .container {
+  max-width: 100%;
+  padding: 0;
+}
+
+.header .navbar {
+  padding: 0.5rem 1rem;
+}
+
+/* Full Width Main Content */
+.main-content {
+  flex: 1;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Remove container padding for full width */
+.container-fluid {
+  padding: 0 !important;
+  margin: 0 !important;
+  max-width: 100% !important;
+}
+
+/* Custom full-width container */
+.full-width-container {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Full Width Footer */
+.footer {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.footer .container {
+  max-width: 100%;
+}
+
+/* Remove Bootstrap's default container padding */
+.container {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 0;
+  margin-right: 0;
+  max-width: 100%;
+}
+
+/* Ensure rows and columns don't add extra spacing */
+.row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.col, .col-1, .col-2, .col-3, .col-4, .col-5, .col-6,
+.col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Custom full-width classes */
+.w-100 {
+  width: 100% !important;
+}
+
+.m-0 {
+  margin: 0 !important;
+}
+
+.p-0 {
+  padding: 0 !important;
+}
+
+/* Header Specific Fixes */
+.navbar-brand {
+  margin-left: 1rem;
+}
+
+.navbar-nav {
+  margin-right: 1rem;
+}
+
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    padding: 1rem;
+  }
+  
+  .search-group {
+    margin: 0.5rem 0;
+  }
+}
+
+/* Content Area Fixes */
+.content-area {
+  width: 100%;
+  min-height: calc(100vh - 140px);
+  padding: 0;
+}
+
+/* Card and Content Spacing Adjustments */
+.card {
+  margin: 1rem;
+  border-radius: 0;
+}
+
+@media (min-width: 768px) {
+  .card {
+    margin: 1rem 2rem;
+    border-radius: 12px;
+  }
+}
+
+/* Custom Variables */
+:root {
+  --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --secondary-gradient: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  --shadow-light: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 5px 15px rgba(0, 0, 0, 0.1);
+  --shadow-heavy: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Smooth Transitions */
+a, button, .btn {
+  transition: all 0.3s ease;
+}
+
+/* Button Enhancements */
+.btn {
+  border-radius: 8px;
+  font-weight: 500;
+  padding: 0.5rem 1.5rem;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background: var(--primary-gradient);
+  border: none;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-medium);
+}
+
+/* Form Enhancements */
+.form-control {
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+  border-color: #667eea;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+}
+
+
+
+
+/* src/app/app.component.css */
+:host {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.app-root {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}

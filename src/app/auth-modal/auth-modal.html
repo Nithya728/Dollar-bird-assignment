@@ -1,0 +1,106 @@
+
+<div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="authModalLabel">
+          {{ activeTab === 'login' ? 'Welcome Back' : 'Join Our Community' }}
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="clearMessages()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+      <div class="modal-body">
+       
+        <ul class="nav nav-pills nav-justified mb-4">
+          <li class="nav-item">
+            <a class="nav-link" [class.active]="activeTab === 'login'" 
+               (click)="switchTab('login')" style="cursor: pointer;">
+              <i class="fas fa-sign-in-alt mr-2"></i>Login
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [class.active]="activeTab === 'signup'" 
+               (click)="switchTab('signup')" style="cursor: pointer;">
+              <i class="fas fa-user-plus mr-2"></i>Sign Up
+            </a>
+          </li>
+        </ul>
+
+      
+        <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show">
+          {{ errorMessage }}
+          <button type="button" class="close" (click)="errorMessage = ''">
+            <span>&times;</span>
+          </button>
+        </div>
+
+        <div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show">
+          {{ successMessage }}
+          <button type="button" class="close" (click)="successMessage = ''">
+            <span>&times;</span>
+          </button>
+        </div>
+
+       
+        <form *ngIf="activeTab === 'login'" (ngSubmit)="onLogin()" #loginForm="ngForm">
+          <div class="form-group">
+            <label for="loginEmail">Email address</label>
+            <input type="email" class="form-control" id="loginEmail" 
+                   [(ngModel)]="loginData.email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <input type="password" class="form-control" id="loginPassword" 
+                   [(ngModel)]="loginData.password" name="password" required>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block" [disabled]="isLoading">
+            <span *ngIf="isLoading" class="spinner-border spinner-border-sm mr-2"></span>
+            <i class="fas fa-sign-in-alt mr-2" *ngIf="!isLoading"></i>
+            {{ isLoading ? 'Logging in...' : 'Login' }}
+          </button>
+        </form>
+
+       
+        <form *ngIf="activeTab === 'signup'" (ngSubmit)="onSignup()" #signupForm="ngForm">
+          <div class="form-group">
+            <label for="signupName">Full Name</label>
+            <input type="text" class="form-control" id="signupName" 
+                   [(ngModel)]="signupData.name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="signupEmail">Email address</label>
+            <input type="email" class="form-control" id="signupEmail" 
+                   [(ngModel)]="signupData.email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="signupPassword">Password</label>
+            <input type="password" class="form-control" id="signupPassword" 
+                   [(ngModel)]="signupData.password" name="password" required minlength="6">
+            <small class="form-text text-muted">Must be at least 6 characters long</small>
+          </div>
+          <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" class="form-control" id="confirmPassword" 
+                   [(ngModel)]="signupData.confirmPassword" name="confirmPassword" required>
+          </div>
+          <button type="submit" class="btn btn-success btn-block" [disabled]="isLoading">
+            <span *ngIf="isLoading" class="spinner-border spinner-border-sm mr-2"></span>
+            <i class="fas fa-user-plus mr-2" *ngIf="!isLoading"></i>
+            {{ isLoading ? 'Creating Account...' : 'Create Account' }}
+          </button>
+        </form>
+
+     
+        <div class="mt-4 p-3 bg-light rounded">
+          <h6 class="font-weight-bold">Demo Credentials:</h6>
+          <small class="text-muted">
+            Email: user@example.com<br>
+            Password: password123
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

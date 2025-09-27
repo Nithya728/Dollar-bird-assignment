@@ -1,0 +1,147 @@
+
+<div class="container-fluid px-0">
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 col-xl-8">
+        
+        <div class="text-center mb-5">
+          <h1 class="display-5 font-weight-bold text-primary mb-3">Create New Post</h1>
+          <p class="lead text-muted">Share your knowledge and insights with the community</p>
+        </div>
+
+      
+        <div class="card border-0 shadow-lg">
+          <div class="card-body p-5">
+            <form [formGroup]="postForm" (ngSubmit)="onSubmit()" novalidate>
+              
+             
+              <div class="form-group">
+                <label for="title" class="font-weight-bold">Post Title *</label>
+                <input 
+                  type="text" 
+                  class="form-control form-control-lg" 
+                  id="title" 
+                  formControlName="title"
+                  placeholder="Enter a compelling title for your post"
+                  [class.is-invalid]="submitted && f['title'].errors">
+                <div *ngIf="submitted && f['title'].errors" class="invalid-feedback">
+                  <div *ngIf="f['title'].errors['required']">Title is required</div>
+                  <div *ngIf="f['title'].errors['minlength']">Title must be at least 5 characters</div>
+                  <div *ngIf="f['title'].errors['maxlength']">Title cannot exceed 200 characters</div>
+                </div>
+              </div>
+
+             
+              <div class="form-group">
+                <label for="author" class="font-weight-bold">Author Name *</label>
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  id="author" 
+                  formControlName="author"
+                  placeholder="Your name"
+                  [class.is-invalid]="submitted && f['author'].errors">
+                <div *ngIf="submitted && f['author'].errors" class="invalid-feedback">
+                  <div *ngIf="f['author'].errors['required']">Author name is required</div>
+                  <div *ngIf="f['author'].errors['minlength']">Author name must be at least 2 characters</div>
+                </div>
+              </div>
+
+             
+              <div class="form-group">
+                <label for="excerpt" class="font-weight-bold">
+                  Excerpt 
+                  <small class="text-muted">(Optional)</small>
+                </label>
+                <textarea 
+                  class="form-control" 
+                  id="excerpt" 
+                  rows="3" 
+                  formControlName="excerpt"
+                  placeholder="Brief description of your post (will be displayed in post listings)"
+                  [class.is-invalid]="submitted && f['excerpt'].errors"></textarea>
+                <small class="form-text text-muted">
+                  {{ excerptCharacterCount }}/300 characters
+                  <span *ngIf="f['excerpt'].errors?.['maxlength']" class="text-danger">
+                    - Excerpt too long
+                  </span>
+                </small>
+              </div>
+
+             
+              <div class="form-group">
+                <label for="tags" class="font-weight-bold">
+                  Tags 
+                  <small class="text-muted">(Optional)</small>
+                </label>
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  id="tags" 
+                  formControlName="tags"
+                  placeholder="angular, typescript, web-development (comma separated)">
+                <small class="form-text text-muted">Add relevant tags to help readers find your post</small>
+              </div>
+
+             
+              <div class="form-group">
+                <label for="content" class="font-weight-bold">Content *</label>
+                <textarea 
+                  class="form-control" 
+                  id="content" 
+                  rows="12" 
+                  formControlName="content"
+                  placeholder="Write your post content here. You can use markdown formatting."
+                  [class.is-invalid]="submitted && f['content'].errors"></textarea>
+                <div *ngIf="submitted && f['content'].errors" class="invalid-feedback">
+                  <div *ngIf="f['content'].errors['required']">Content is required</div>
+                  <div *ngIf="f['content'].errors['minlength']">Content must be at least 50 characters</div>
+                </div>
+                <small class="form-text text-muted">
+                  {{ characterCount }} characters (minimum 50 required)
+                </small>
+              </div>
+
+             
+              <div class="form-group mt-5">
+                <div class="d-flex justify-content-between align-items-center">
+                  <button type="button" class="btn btn-outline-secondary" (click)="onCancel()"
+                          [disabled]="isLoading">
+                    <i class="fas fa-times mr-2"></i>Cancel
+                  </button>
+                  
+                  <div>
+                    <button type="submit" class="btn btn-primary btn-lg" [disabled]="isLoading">
+                      <span *ngIf="isLoading" class="spinner-border spinner-border-sm mr-2"></span>
+                      <i class="fas fa-paper-plane mr-2" *ngIf="!isLoading"></i>
+                      {{ isLoading ? 'Publishing...' : 'Publish Post' }}
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              
+              <div *ngIf="submitted && postForm.invalid" class="alert alert-warning mt-3">
+                <i class="fas fa-exclamation-triangle mr-2"></i>
+                Please fix the errors above before submitting.
+              </div>
+            </form>
+          </div>
+        </div>
+
+        
+        <div class="mt-4">
+          <div class="alert alert-info">
+            <h6><i class="fas fa-lightbulb mr-2"></i>Writing Tips</h6>
+            <ul class="mb-0">
+              <li>Use clear and descriptive titles</li>
+              <li>Break content into paragraphs for better readability</li>
+              <li>Add relevant tags to increase discoverability</li>
+              <li>Proofread your content before publishing</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

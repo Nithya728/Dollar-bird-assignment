@@ -1,0 +1,35 @@
+
+.jumbotron {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 0;
+}
+
+.posts-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+}
+
+@media (max-width: 768px) {
+  .posts-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .stats-box {
+    margin-top: 1rem;
+    text-align: center !important;
+  }
+}
+
+.empty-state {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.input-group-lg .form-control {
+  border-radius: 25px 0 0 25px;
+}
+
+.input-group-lg .btn {
+  border-radius: 0 25px 25px 0;
+}

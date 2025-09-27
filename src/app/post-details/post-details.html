@@ -1,0 +1,132 @@
+
+<div *ngIf="post && !isLoading" class="container pb-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+     
+      <article class="card border-0 shadow-lg mb-5">
+        <div class="card-body p-5">
+          <div class="text-center mb-4">
+            <h1 class="display-5 font-weight-bold text-dark mb-3">{{ post.title }}</h1>
+            <div class="d-flex justify-content-center align-items-center flex-wrap">
+              <div class="mr-4">
+                <i class="fas fa-user text-primary mr-1"></i>
+                <strong>{{ post.author }}</strong>
+              </div>
+              <div class="mr-4">
+                <i class="fas fa-calendar text-primary mr-1"></i>
+                {{ post.date | date:'fullDate' }}
+              </div>
+              <div>
+                <i class="fas fa-clock text-primary mr-1"></i>
+                {{ post.date | date:'shortTime' }}
+              </div>
+            </div>
+          </div>
+
+          
+          <div class="text-center mb-4">
+            <span *ngFor="let tag of post.tags" class="badge badge-primary badge-pill px-3 py-2 mr-2">
+              {{ tag }}
+            </span>
+          </div>
+
+        
+          <div class="post-content">
+            <div *ngFor="let paragraph of post.content.split('\n\n')" class="mb-4">
+              <p class="lead" *ngIf="paragraph.startsWith('Key Features:') || paragraph.startsWith('@Component')">
+                {{ paragraph }}
+              </p>
+              <p *ngIf="!paragraph.startsWith('Key Features:') && !paragraph.startsWith('@Component')">
+                {{ paragraph }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+     
+      <section class="card border-0 shadow">
+        <div class="card-header bg-white py-4">
+          <h3 class="mb-0">
+            <i class="fas fa-comments text-primary mr-2"></i>
+            Comments ({{ comments.length }})
+          </h3>
+        </div>
+        <div class="card-body p-4">
+         
+          <div class="text-center mb-4">
+            <button class="btn btn-primary" (click)="toggleCommentForm()">
+              <i class="fas fa-plus mr-2"></i>
+              {{ showCommentForm ? 'Cancel' : 'Add Comment' }}
+            </button>
+          </div>
+
+         
+          <form *ngIf="showCommentForm" [formGroup]="commentForm" (ngSubmit)="onSubmitComment()" 
+                class="mb-5" id="commentForm">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="name" class="font-weight-bold">Name *</label>
+                  <input type="text" class="form-control" id="name" formControlName="name"
+                         [class.is-invalid]="commentFormControls['name'].touched && commentFormControls['name'].invalid">
+                  <div *ngIf="commentFormControls['name'].touched && commentFormControls['name'].invalid" 
+                       class="invalid-feedback">
+                    <div *ngIf="commentFormControls['name'].errors?.['required']">Name is required</div>
+                    <div *ngIf="commentFormControls['name'].errors?.['minlength']">Name must be at least 2 characters</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="email" class="font-weight-bold">Email *</label>
+                  <input type="email" class="form-control" id="email" formControlName="email"
+                         [class.is-invalid]="commentFormControls['email'].touched && commentFormControls['email'].invalid">
+                  <div *ngIf="commentFormControls['email'].touched && commentFormControls['email'].invalid" 
+                       class="invalid-feedback">
+                    <div *ngIf="commentFormControls['email'].errors?.['required']">Email is required</div>
+                    <div *ngIf="commentFormControls['email'].errors?.['email']">Please enter a valid email</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="body" class="font-weight-bold">Comment *</label>
+              <textarea class="form-control" id="body" rows="4" formControlName="body"
+                        [class.is-invalid]="commentFormControls['body'].touched && commentFormControls['body'].invalid"
+                        placeholder="Share your thoughts..."></textarea>
+              <div *ngIf="commentFormControls['body'].touched && commentFormControls['body'].invalid" 
+                   class="invalid-feedback">
+                <div *ngIf="commentFormControls['body'].errors?.['required']">Comment is required</div>
+                <div *ngIf="commentFormControls['body'].errors?.['minlength']">Comment must be at least 10 characters</div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-success" [disabled]="commentForm.invalid">
+              <i class="fas fa-paper-plane mr-2"></i>Submit Comment
+            </button>
+          </form>
+
+        
+          <div *ngIf="comments.length > 0; else noComments">
+            <div *ngFor="let comment of comments" class="media mb-4 p-3 bg-light rounded">
+              <div class="media-body">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <h6 class="mt-0 mb-0 font-weight-bold">{{ comment.name }}</h6>
+                  <small class="text-muted">{{ comment.date | date:'medium' }}</small>
+                </div>
+                <p class="mb-0">{{ comment.body }}</p>
+              </div>
+            </div>
+          </div>
+
+          <ng-template #noComments>
+            <div class="text-center py-4">
+              <i class="fas fa-comments fa-2x text-muted mb-3"></i>
+              <p class="text-muted mb-0">No comments yet. Be the first to share your thoughts!</p>
+            </div>
+          </ng-template>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

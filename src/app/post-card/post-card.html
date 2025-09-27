@@ -1,0 +1,30 @@
+<div class="card post-card mb-4 shadow-sm" appHighlight="#f8f9fa" highlightClass="post-highlighted">
+  <div class="card-body">
+    <div class="d-flex justify-content-between align-items-start mb-2">
+      <h5 class="card-title mb-0 text-primary">{{ post.title }}</h5>
+      <small class="text-muted">{{ post.date | date:'mediumDate' }}</small>
+    </div>
+    
+    <div class="mb-3">
+      <small class="text-muted">
+        <i class="fas fa-user mr-1"></i>By {{ post.author }}
+      </small>
+    </div>
+
+    <div class="mb-3">
+      <p class="card-text">
+        {{ showFullContent ? post.content : (post.content | truncate:80:true) }}
+      </p>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center">
+      <div>
+        <span *ngFor="let tag of post.tags" class="badge badge-secondary mr-1">{{ tag }}</span>
+      </div>
+     
+      <a [routerLink]="['/post-details', post.id]" class="btn btn-primary btn-sm">
+        <i class="fas fa-book-reader mr-1"></i>Read More
+      </a>
+    </div>
+  </div>
+</div>

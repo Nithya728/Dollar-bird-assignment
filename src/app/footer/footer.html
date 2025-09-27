@@ -1,0 +1,137 @@
+
+<footer class="footer bg-dark text-light pt-5 w-100 m-0">
+  <div class="container-fluid">
+    
+    <div class="row mx-0">
+    
+      <div class="col-lg-4 col-md-6 mb-4 pl-4">
+        <div class="footer-brand d-flex align-items-center mb-3">
+          <div class="brand-icon mr-2">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <h5 class="mb-0">
+            <strong>Angular</strong>Blog
+          </h5>
+        </div>
+        <p class="text-muted">
+          A modern blog platform built with Angular. Share your knowledge, 
+          connect with developers, and stay updated with the latest trends 
+          in web development.
+        </p>
+        <div class="social-links">
+          <a href="#" class="social-link">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" class="social-link">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="#" class="social-link">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="#" class="social-link">
+            <i class="fab fa-youtube"></i>
+          </a>
+        </div>
+      </div>
+
+     
+      <div class="col-lg-2 col-md-6 mb-4 pl-4">
+        <h6 class="text-uppercase fw-bold mb-3">Quick Links</h6>
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <a routerLink="/home" class="text-muted footer-link">Home</a>
+          </li>
+          <li class="mb-2">
+            <a routerLink="/add-post" class="text-muted footer-link">Write a Post</a>
+          </li>
+          <li class="mb-2">
+            <a routerLink="/categories" class="text-muted footer-link">Categories</a>
+          </li>
+          <li class="mb-2">
+            <a routerLink="/footer-links/popular" class="text-muted footer-link">Popular Posts</a>
+          </li>
+          <li class="mb-2">
+            <a routerLink="/about" class="text-muted footer-link">About Us</a>
+          </li>
+        </ul>
+      </div>
+
+     
+      <div class="col-lg-2 col-md-6 mb-4 pl-4">
+        <h6 class="text-uppercase fw-bold mb-3">Categories</h6>
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <a routerLink="/category/angular" class="text-muted footer-link">Angular</a>
+          </li>
+          <li class="mb-2">
+            <a routerLink="/category/typescript" class="text-muted footer-link">TypeScript</a>
+          </li>
+          <li class="mb-2">
+            <a routerLink="/category/javascript" class="text-muted footer-link">JavaScript</a>
+          </li>
+          <li class="mb-2">
+            <a routerLink="/category/web-development" class="text-muted footer-link">Web Development</a>
+          </li>
+          <li class="mb-2">
+            <a routerLink="/category/frontend" class="text-muted footer-link">Frontend Development</a>
+          </li>
+        </ul>
+      </div>
+
+     
+      <div class="col-lg-4 col-md-6 mb-4 pl-4 pr-4">
+        <h6 class="text-uppercase fw-bold mb-3">Newsletter</h6>
+        <p class="text-muted mb-3">
+          Subscribe to our newsletter to get the latest updates and news.
+        </p>
+        <form class="newsletter-form" (submit)="onNewsletterSubmit($event)">
+          <div class="input-group">
+            <input type="email" class="form-control" placeholder="Your email address" 
+                   aria-label="Email" aria-describedby="newsletter-submit"
+                   [(ngModel)]="newsletterEmail" name="newsletterEmail" required>
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="submit" id="newsletter-submit">
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+        <div class="mt-3">
+          <small class="text-muted">
+            <i class="fas fa-shield-alt mr-1"></i>
+            We respect your privacy. Unsubscribe at any time.
+          </small>
+        </div>
+      </div>
+    </div>
+
+    
+    <hr class="my-4 bg-secondary mx-4">
+
+
+    <div class="row align-items-center mx-0 px-4">
+      <div class="col-md-6 text-center text-md-left">
+        <p class="mb-0 text-muted">
+          &copy; {{ currentYear }} AngularBlog. All rights reserved.
+        </p>
+      </div>
+      <div class="col-md-6 text-center text-md-right">
+        <div class="footer-bottom-links">
+          <a routerLink="/footer-links/privacy" class="text-muted mx-2">Privacy Policy</a>
+          <a routerLink="/footer-links/terms" class="text-muted mx-2">Terms of Service</a>
+          <a routerLink="/footer-links/cookies" class="text-muted mx-2">Cookie Policy</a>
+          <a routerLink="/footer-links/sitemap" class="text-muted mx-2">Sitemap</a>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="text-center mt-4 pb-3">
+      <button class="btn btn-outline-light btn-sm back-to-top" (click)="scrollToTop()" [class.d-none]="!showBackToTop">
+        <i class="fas fa-chevron-up mr-1"></i>Back to Top
+      </button>
+    </div>
+  </div>
+</footer>

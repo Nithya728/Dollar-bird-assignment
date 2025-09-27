@@ -1,0 +1,33 @@
+
+/* src/app/pages/post-detail/post-detail.component.css */
+.post-content {
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+.post-content p {
+  margin-bottom: 1.5rem;
+}
+
+.post-content .lead {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.media {
+  border-left: 4px solid #007bff;
+}
+
+.badge-pill {
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .card-body.p-5 {
+    padding: 2rem !important;
+  }
+  
+  .display-5 {
+    font-size: 2rem;
+  }
+}
